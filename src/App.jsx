@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
+import { useEffect,useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { AiFillPlusCircle } from "react-icons/ai";
+import {collection,getDocs} from "firebase/firestore"
+import { db } from "./config/firebase";
 const App = () => {
+
+  const [contact,setContact] = useState([]);
+
+  useEffect(() => {
+    const getContact = async() =>{
+      try {
+        const contactRef = collection(db,"contact") ;
+        const contactSnapshot = await getDocs(contactRef);
+        console.log(contactSnapshot);
+
+      } catch (error) {
+        console.log(error);
+      }
+      
+    };
+
+    getContact();
+  },[]);
+
   return (
     <div className="max-w-[370px] mx-auto px-4">
       <Navbar />
