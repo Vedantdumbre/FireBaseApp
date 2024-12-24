@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
-import { useEffect,useState } from "react";
+import {useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { AiFillPlusCircle } from "react-icons/ai";
 import {collection,getDocs} from "firebase/firestore"
