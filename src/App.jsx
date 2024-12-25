@@ -8,8 +8,20 @@ import { db } from "./config/firebase";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdTrash } from "react-icons/io";
 import { RiEditCircleLine } from "react-icons/ri";
+import Model from "./components/Model";
 const App = () => {
   const [contact, setContact] = useState([]);
+
+  const [isOpen,setOpen] = useState(false);
+
+  const onOpen = () => {
+    setOpen(true);
+  }
+
+
+  const onClose = () => {
+    setOpen(false);
+  }
 
   useEffect(() => {
     const getContact = async () => {
@@ -32,6 +44,7 @@ const App = () => {
   }, []);
 
   return (
+    <>
     <div className="max-w-[370px] mx-auto px-4">
       <Navbar />
       <div className="flex gap-2">
@@ -45,7 +58,7 @@ const App = () => {
 
         <AiFillPlusCircle className="text-5xl text-white cursor-pointer" />
       </div>
-      <div className="mt-4 gap-4 flex flex-col" >
+      <div className="mt-4 gap-3 flex flex-col" >
         {contact.map((contact) => (
           <div key={contact.id} className="bg-yellow flex items-center justify-around rounded-lg p-2 ">
             <div className="flex items-center justify-between gap-1 " >
@@ -63,6 +76,10 @@ const App = () => {
         ))}
       </div>
     </div>
+    <Model isOpen={isOpen}  onClose={onClose} >
+      hi
+    </Model>
+    </>
   );
 };
 
